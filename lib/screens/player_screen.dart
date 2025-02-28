@@ -22,6 +22,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
     flutterTts.setCompletionHandler(() {
       setState(() {
         isPlaying = false;
+        isPaused = false;
       });
     });
   }
@@ -53,20 +54,14 @@ class _PlayerScreenState extends State<PlayerScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton.icon(
-                  onPressed: isPlaying ? _stop : _speak,
-                  icon: Icon(isPlaying ? Icons.stop : Icons.play_arrow),
-                  label: Text(isPlaying ? 'Stop' : 'Play'),
+                  onPressed: isPlaying ? _pause : _speak,
+                  icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
+                  label: Text(isPlaying ? 'Pause' : 'Play'),
                 ),
                 ElevatedButton.icon(
-                  onPressed:
-                      isPlaying ? _pause : null, // Disable if not playing
-                  icon: const Icon(Icons.pause),
-                  label: const Text('Pause'),
-                ),
-                ElevatedButton.icon(
-                  onPressed: isPaused ? _resume : null, // Disable if not paused
-                  icon: const Icon(Icons.play_arrow),
-                  label: const Text('Resume'),
+                  onPressed: _stop,
+                  icon: const Icon(Icons.stop),
+                  label: const Text('Stop'),
                 ),
               ],
             ),
@@ -98,17 +93,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
       isPlaying = false;
       isPaused = true;
     });
-  }
-
-  Future<void> _resume() async {
-    if (isPaused) {
-      setState(() {
-        isPlaying = true;
-        isPaused = false;
-      });
-      String remainingText = words.sublist(lastSpokenWordIndex).join(" ");
-      await flutterTts.speak(remainingText);
-    }
   }
 
   Future<void> _stop() async {
