@@ -1,0 +1,24 @@
+name: audio_book
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  file_picker: ^5.3.1
+  flutter_tts: ^3.8.5  # Latest version
+  pdf: ^3.10.6
+  syncfusion_flutter_pdfviewer: ^22.2.12  # For viewing PDFs
+  syncfusion_flutter_pdf: ^22.2.12  # For extracting text
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
