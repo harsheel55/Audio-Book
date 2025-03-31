@@ -11,9 +11,6 @@ A Flutter application that allows users to listen to audio books with a beautifu
 - Category-based book organization
 - Search functionality
 
-## Screenshots
-
-[Add your app screenshots here]
 
 ## Getting Started
 
