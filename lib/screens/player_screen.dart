@@ -14,7 +14,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
   bool isPaused = false;
   String textToRead = "";
   int lastSpokenWordIndex = 0;
-  List<String> words = [];
 
   @override
   void initState() {
@@ -30,7 +29,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
   @override
   Widget build(BuildContext context) {
     textToRead = ModalRoute.of(context)!.settings.arguments as String;
-    words = textToRead.split(" "); // Splitting text into words
 
     return Scaffold(
       appBar: AppBar(
@@ -76,12 +74,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
       isPlaying = true;
       isPaused = false;
     });
-    await _speakFromIndex(lastSpokenWordIndex);
-  }
-
-  Future<void> _speakFromIndex(int startIndex) async {
-    String remainingText = words.sublist(startIndex).join(" ");
-    await flutterTts.speak(remainingText);
+    await flutterTts.speak(textToRead);
     setState(() {
       isPlaying = false;
     });
